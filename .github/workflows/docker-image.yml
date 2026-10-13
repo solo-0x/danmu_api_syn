@@ -7,10 +7,11 @@ on:
   pull_request:
     branches:
       - main
-    if: github.repository == 'huangxd-/danmu_api'
 
 jobs:
   build:
+    # Fork 默认仅同步代码；需要发布 Docker 镜像时显式启用此变量并配置凭证。
+    if: github.repository == 'huangxd-/danmu_api' || vars.ENABLE_DOCKER_BUILD == 'true'
     runs-on: ubuntu-latest
 
     steps:
